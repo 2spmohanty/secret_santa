@@ -48,20 +48,7 @@ get_person_names()
 
 images = [pygame.image.load(f"images/{person.lower()}.png") for person in names]
 
-"""
-images = [
-             pygame.image.load("images/santa.png"),
-             pygame.image.load("images/elf.png"),
-             pygame.image.load("images/rudolph.png"),
-             pygame.image.load("images/snowman.png"),
-             pygame.image.load("images/grinch.png"),
-         ] + [pygame.Surface((100, 100)) for _ in range(29)]  # Placeholder for additional images
-"""
 
-# Load Sounds
-"""spin_sound = pygame.mixer.Sound("music/rolling2.wav")
-winner_sound = pygame.mixer.Sound("music/winner2.wav")
-loser_sound = pygame.mixer.Sound("music/loser1.wav")"""
 
 # Initialize Pygame mixer
 pygame.mixer.init()
@@ -230,6 +217,7 @@ def update_matrix_with_winner(winner):
             create_fireworks(rect_x, rect_y)
     else:
         winner_row = -1
+
         visible_counts = Counter([matrix[row][col] for row in range(GRID_ROWS) for col in range(GRID_COLS)])
         most_common = visible_counts.most_common(1)[0][0]
         highlight_item = most_common
@@ -306,13 +294,6 @@ while run:
     input_surface = font.render(input_text, True, (121, 80, 80))
     input_rect_inner = input_surface.get_rect(center=input_rect.center)
     screen.blit(input_surface, input_rect_inner)
-    # screen.blit(input_surface, (input_rect.x + 10, input_rect.y + 10))
-    """input_rect = pygame.Rect((WIDTH - 300) // 2, HEIGHT - 100, 300, 50)  # Adjusted position below grid
-    pygame.draw.rect(screen, WHITE, input_rect)
-    pygame.draw.rect(screen, BLACK, input_rect, 2)
-    input_surface = font.render(input_text, True, BLACK)
-    input_rect_inner = input_surface.get_rect(center=input_rect.center)
-    screen.blit(input_surface, input_rect_inner)"""
 
     # Display Update
     pygame.display.flip()
